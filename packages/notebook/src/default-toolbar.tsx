@@ -13,9 +13,7 @@ import {
   addToolbarButtonClass,
   ReactWidget,
   ToolbarButton,
-  ISessionContextDialogs,
-  ISessionContext,
-  sessionContextDialogs
+  ISessionContextDialogs
 } from '@jupyterlab/apputils';
 import { DocumentRegistry } from '@jupyterlab/docregistry';
 import * as nbformat from '@jupyterlab/nbformat';
@@ -23,7 +21,6 @@ import {
   addIcon,
   copyIcon,
   cutIcon,
-  fastForwardIcon,
   HTMLSelect,
   pasteIcon,
   runIcon,
@@ -153,28 +150,6 @@ export namespace ToolbarItems {
       tooltip: 'Run the selected cells and advance'
     });
   }
-  /**
-   * Create a restart run all toolbar item
-   */
-  export function createRestartRunAllButton(
-    panel: NotebookPanel,
-    dialogs?: ISessionContext.IDialogs
-  ): Widget {
-    return new ToolbarButton({
-      icon: fastForwardIcon,
-      onClick: () => {
-        void (dialogs ?? sessionContextDialogs)
-          .restart(panel.sessionContext)
-          .then(restarted => {
-            if (restarted) {
-              void NotebookActions.runAll(panel.content, panel.sessionContext);
-            }
-            return restarted;
-          });
-      },
-      tooltip: 'Restart the kernel, then re-run the whole notebook'
-    });
-  }
 
   /**
    * Create a cell type switcher item.
@@ -215,10 +190,6 @@ export namespace ToolbarItems {
           panel.sessionContext,
           sessionDialogs
         )
-      },
-      {
-        name: 'restart-and-run',
-        widget: createRestartRunAllButton(panel, sessionDialogs)
       },
       { name: 'cellType', widget: createCellTypeItem(panel) },
       { name: 'spacer', widget: Toolbar.createSpacerItem() },
