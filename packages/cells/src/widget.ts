@@ -1325,8 +1325,7 @@ export abstract class AttachmentsCell extends Cell {
       const mimeType = matches[1];
       const encodedData = matches[3];
       const bundle: nbformat.IMimeBundle = { [mimeType]: encodedData };
-      const URI = encodeURI(blob.name)
-      this.model.attachments.set(URI, bundle);
+      this.model.attachments.set(encodeURI(blob.name), bundle);
       this.updateCellSourceWithAttachment(blob.name);
     };
     reader.onerror = evt => {
