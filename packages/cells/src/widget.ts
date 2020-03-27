@@ -1169,7 +1169,8 @@ export abstract class AttachmentsCell extends Cell {
    * Modify the cell source to include a reference to the attachment.
    */
   protected abstract updateCellSourceWithAttachment(
-    attachmentName: string
+    attachmentName: string,
+    attachmentURI: string
   ): void;
 
   /**
@@ -1233,6 +1234,7 @@ export abstract class AttachmentsCell extends Cell {
    */
   private _evtNativeDrop(event: DragEvent): void {
     if (event.dataTransfer) {
+      console.log(event.dataTransfer.items[0]);
       this._attachFiles(event.dataTransfer.items);
     }
     event.preventDefault();
@@ -1272,9 +1274,9 @@ export abstract class AttachmentsCell extends Cell {
           CONTENTS_MIME_RICH
         ) as DirListing.IContentsThunk;
         if (model.type === 'file') {
-          this.updateCellSourceWithAttachment(model.name);
+          this.updateCellSourceWithAttachment(model.name, encodeURI(model.name));
           void withContent().then(fullModel => {
-            this.model.attachments.set(fullModel.name, {
+            this.model.attachments.set(encodeURI(fullModel.name), {
               [fullModel.mimetype]: fullModel.content
             });
           });
@@ -1282,10 +1284,10 @@ export abstract class AttachmentsCell extends Cell {
       } else {
         // Pure mimetype, no useful name to infer
         const name = UUID.uuid4();
-        this.model.attachments.set(name, {
+        this.model.attachments.set(encodeURI(name), {
           [mimeType]: event.mimeData.getData(mimeType)
         });
-        this.updateCellSourceWithAttachment(name);
+        this.updateCellSourceWithAttachment(name, encodeURI(name));
       }
     }
   }
@@ -1325,8 +1327,9 @@ export abstract class AttachmentsCell extends Cell {
       const mimeType = matches[1];
       const encodedData = matches[3];
       const bundle: nbformat.IMimeBundle = { [mimeType]: encodedData };
-      this.model.attachments.set(blob.name, bundle);
-      this.updateCellSourceWithAttachment(blob.name);
+      const name = encodeURI(blob.name)
+      this.model.attachments.set(name, bundle);
+      this.updateCellSourceWithAttachment(name);
     };
     reader.onerror = evt => {
       console.error(`Failed to attach ${blob.name}` + evt);
@@ -1445,8 +1448,8 @@ export class MarkdownCell extends AttachmentsCell {
   /**
    * Modify the cell source to include a reference to the attachment.
    */
-  protected updateCellSourceWithAttachment(attachmentName: string) {
-    const textToBeAppended = `![${attachmentName}](attachment:${attachmentName})`;
+  protected updateCellSourceWithAttachment(attachmentName: string, attachmentURI: string) {
+    const textToBeAppended = `![${attachmentName}](attachment:${attachmentURI})`;
     this.model.value.insert(this.model.value.text.length, textToBeAppended);
   }
 
