@@ -1169,8 +1169,7 @@ export abstract class AttachmentsCell extends Cell {
    * Modify the cell source to include a reference to the attachment.
    */
   protected abstract updateCellSourceWithAttachment(
-    attachmentName: string,
-    attachmentURI: string
+    attachmentName: string
   ): void;
 
   /**
@@ -1273,7 +1272,7 @@ export abstract class AttachmentsCell extends Cell {
           CONTENTS_MIME_RICH
         ) as DirListing.IContentsThunk;
         if (model.type === 'file') {
-          this.updateCellSourceWithAttachment(model.name, encodeURI(model.name));
+          this.updateCellSourceWithAttachment(model.name);
           void withContent().then(fullModel => {
             this.model.attachments.set(encodeURI(fullModel.name), {
               [fullModel.mimetype]: fullModel.content
@@ -1286,7 +1285,7 @@ export abstract class AttachmentsCell extends Cell {
         this.model.attachments.set(encodeURI(name), {
           [mimeType]: event.mimeData.getData(mimeType)
         });
-        this.updateCellSourceWithAttachment(name, encodeURI(name));
+        this.updateCellSourceWithAttachment(name);
       }
     }
   }
@@ -1326,9 +1325,9 @@ export abstract class AttachmentsCell extends Cell {
       const mimeType = matches[1];
       const encodedData = matches[3];
       const bundle: nbformat.IMimeBundle = { [mimeType]: encodedData };
-      const URI= encodeURI(blob.name)
+      const URI = encodeURI(blob.name)
       this.model.attachments.set(URI, bundle);
-      this.updateCellSourceWithAttachment(blob.name, URI);
+      this.updateCellSourceWithAttachment(blob.name);
     };
     reader.onerror = evt => {
       console.error(`Failed to attach ${blob.name}` + evt);
@@ -1447,8 +1446,8 @@ export class MarkdownCell extends AttachmentsCell {
   /**
    * Modify the cell source to include a reference to the attachment.
    */
-  protected updateCellSourceWithAttachment(attachmentName: string, attachmentURI: string) {
-    const textToBeAppended = `![${attachmentName}](attachment:${attachmentURI})`;
+  protected updateCellSourceWithAttachment(attachmentName: string) {
+    const textToBeAppended = `![${attachmentName}](attachment:${attachmentName})`;
     this.model.value.insert(this.model.value.text.length, textToBeAppended);
   }
 
