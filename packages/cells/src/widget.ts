@@ -1234,7 +1234,6 @@ export abstract class AttachmentsCell extends Cell {
    */
   private _evtNativeDrop(event: DragEvent): void {
     if (event.dataTransfer) {
-      console.log(event.dataTransfer.items[0]);
       this._attachFiles(event.dataTransfer.items);
     }
     event.preventDefault();
@@ -1327,9 +1326,9 @@ export abstract class AttachmentsCell extends Cell {
       const mimeType = matches[1];
       const encodedData = matches[3];
       const bundle: nbformat.IMimeBundle = { [mimeType]: encodedData };
-      const name = encodeURI(blob.name)
-      this.model.attachments.set(name, bundle);
-      this.updateCellSourceWithAttachment(name);
+      const URI= encodeURI(blob.name)
+      this.model.attachments.set(URI, bundle);
+      this.updateCellSourceWithAttachment(blob.name, URI);
     };
     reader.onerror = evt => {
       console.error(`Failed to attach ${blob.name}` + evt);
