@@ -1,0 +1,14 @@
+/*-----------------------------------------------------------------------------
+| Copyright (c) Jupyter Development Team.
+| Distributed under the terms of the Modified BSD License.
+|----------------------------------------------------------------------------*/
+
+.jp-VideoViewer {
+  overflow: auto;
+}
+
+.jp-VideoViewer > video {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
