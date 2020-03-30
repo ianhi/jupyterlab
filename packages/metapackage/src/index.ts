@@ -46,6 +46,7 @@ import '@jupyterlab/notebook-extension';
 import '@jupyterlab/observables';
 import '@jupyterlab/outputarea';
 import '@jupyterlab/pdf-extension';
+import '@jupyterlab/video-extension';
 import '@jupyterlab/rendermime';
 import '@jupyterlab/rendermime-extension';
 import '@jupyterlab/rendermime-interfaces';

@@ -172,6 +172,9 @@
       "path": "../pdf-extension"
     },
     {
+      "path": "../video-extension"
+    },
+    {
       "path": "../property-inspector"
     },
     {
