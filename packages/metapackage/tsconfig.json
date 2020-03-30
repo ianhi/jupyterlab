@@ -4,7 +4,9 @@
     "outDir": "lib",
     "rootDir": "src"
   },
-  "include": ["src/*"],
+  "include": [
+    "src/*"
+  ],
   "references": [
     {
       "path": "../application"
@@ -172,9 +174,6 @@
       "path": "../pdf-extension"
     },
     {
-      "path": "../video-extension"
-    },
-    {
       "path": "../property-inspector"
     },
     {
@@ -251,6 +250,9 @@
     },
     {
       "path": "../vega5-extension"
+    },
+    {
+      "path": "../video-extension"
     }
   ]
 }
