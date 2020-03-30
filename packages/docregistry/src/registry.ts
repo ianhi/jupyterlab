@@ -45,7 +45,8 @@ import {
   pythonIcon,
   rKernelIcon,
   spreadsheetIcon,
-  yamlIcon
+  yamlIcon,
+  videoIcon
 } from '@jupyterlab/ui-components';
 
 import { TextModelFactory } from './default';
@@ -1378,6 +1379,30 @@ export namespace DocumentRegistry {
       extensions: ['.bmp'],
       icon: imageIcon,
       fileFormat: 'base64'
+    },
+    {
+      name: 'mp4',
+      displayName: 'mp4',
+      fileFormat: 'base64',
+      mimeTypes: ['video/mp4'],
+      extensions: ['.mp4'],
+      icon: videoIcon
+    },
+    {
+      name: 'webm',
+      displayName: 'webm',
+      fileFormat: 'base64',
+      mimeTypes: ['video/webm'],
+      extensions: ['.webm'],
+      icon: videoIcon
+    },
+    {
+      name: 'ogg',
+      displayName: 'ogg',
+      fileFormat: 'base64',
+      mimeTypes: ['video/ogg'],
+      extensions: ['.ogg'],
+      icon: videoIcon
     }
   ];
 }

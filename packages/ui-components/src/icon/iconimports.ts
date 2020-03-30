@@ -75,6 +75,7 @@ import trustedSvgstr from '../../style/icons/statusbar/trusted.svg';
 import undoSvgstr from '../../style/icons/toolbar/undo.svg';
 import vegaSvgstr from '../../style/icons/filetype/vega.svg';
 import yamlSvgstr from '../../style/icons/filetype/yaml.svg';
+import videoSvgstr from '../../style/icons/filetype/video.svg';
 
 // LabIcon instance construction
 export const addIcon = new LabIcon({ name: 'ui-components:add', svgstr: addSvgstr });
@@ -144,3 +145,4 @@ export const trustedIcon = new LabIcon({ name: 'ui-components:trusted', svgstr: 
 export const undoIcon = new LabIcon({ name: 'ui-components:undo', svgstr: undoSvgstr });
 export const vegaIcon = new LabIcon({ name: 'ui-components:vega', svgstr: vegaSvgstr });
 export const yamlIcon = new LabIcon({ name: 'ui-components:yaml', svgstr: yamlSvgstr });
+export const videoIcon = new LabIcon({ name: 'ui-components:yaml', svgstr: videoSvgstr });

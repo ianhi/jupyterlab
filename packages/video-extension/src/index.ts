@@ -89,29 +89,6 @@ const extensions: IRenderMime.IExtension | IRenderMime.IExtension[] = [
     id: '@jupyterlab/video-extension:factory',
     rendererFactory,
     dataType: 'string',
-    fileTypes: [
-      {
-        name: 'mp4',
-        displayName: 'mp4',
-        fileFormat: 'base64',
-        mimeTypes: ['video/mp4'],
-        extensions: ['.mp4']
-      },
-      {
-        name: 'webm',
-        displayName: 'webm',
-        fileFormat: 'base64',
-        mimeTypes: ['video/webm'],
-        extensions: ['.webm']
-      },
-      {
-        name: 'ogg',
-        displayName: 'ogg',
-        fileFormat: 'base64',
-        mimeTypes: ['video/ogg'],
-        extensions: ['.ogg']
-      }
-    ],
     documentWidgetFactoryOptions: {
       name: 'Video Viewer',
       modelName: 'base64',
