@@ -65,6 +65,6 @@ To create an issue, collect the following contextual information:
 - relevant server and JavaScript error messages
 - screenshots or short screencasts illustrating the issue
 
-`Create a new issue <https://github.com/jupyterlab/jupyterlab/issues/new>`__. Include the contextual information from above. Describe how you followed the diagnosis steps above to conclude this was a JupyterLab issue.
+`Create a new issue <https://github.com/jupyterlab/jupyterlab/issues/new?template=bug_report.md>`__. Include the contextual information from above. Describe how you followed the diagnosis steps above to conclude this was a JupyterLab issue.
 
 Communication in JupyterLab follows the Jupyter `Community Guides <https://jupyter.readthedocs.io/en/latest/community/content-community.html>`__.

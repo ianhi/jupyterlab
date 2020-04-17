@@ -53,6 +53,6 @@ Paste the output from your command line running `jupyter lab` here, use `--debug
 
 <details><summary>Browser Output</summary>
 <pre>
-Paste the output from your browser Javascript console here.
+Paste the output from your browser's Javascript console here.
 </pre>
 </details>
